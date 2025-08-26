@@ -21,6 +21,7 @@ import OrderSuccessPage from "./OrderSucess";
 import OrderWaiting from './OrderWaiting.jsx';
 import OrderSuccess from './OrderSucess';
 import AdminDashboard from './Componets/AdminPanle/AdminDashbord.jsx';
+import OrderHistory from './OrderHistory.jsx';
 
 const queryClient = new QueryClient();
 
@@ -42,6 +43,7 @@ createRoot(document.getElementById('root')).render(
             <Route path="/contact" element={<Contact/>} />
              <Route path="/order-waiting" element={<OrderWaiting/>} />
              <Route path="/order-sucess" element={<OrderSuccess/>} />
+             <Route path="/orders" element={<OrderHistory/>} />
              <Route path="/admin" element={<AdminDashboard/>} />
             
           </Routes>

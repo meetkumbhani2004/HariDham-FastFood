@@ -32,7 +32,7 @@ const OrderSuccess = () => {
   };
 
   const handleViewOrders = () => {
-    navigate("/");
+    navigate("/orders");
   };
 
   const formatDate = (dateString) => {
