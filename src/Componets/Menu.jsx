@@ -7,6 +7,9 @@ import Button from "@mui/material/Button";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { collection, addDoc } from "firebase/firestore";
+import { db, auth } from "../firebase"; // aapke firebase.js me db export hona chahiye
+
 
 // ✅ Products data frontend me hi rakha
 const productsData = [
@@ -464,15 +467,39 @@ function Menus() {
     }
   }, [search]);
 
-  // 🛒 Add to Cart
-  const handleClick = (p) => {
+const handleClick = async (p) => {
+  try {
+    // Local cart me add
     addToCart(p);
+
+    // ✅ Firebase me bhi save
+    const user = auth.currentUser;
+    if (user) {
+      const cartRef = collection(db, "carts", user.uid, "items");
+      await addDoc(cartRef, {
+        id: p.id,
+        name: p.name,
+        price: p.price,
+        image: p.image,
+        quantity: 1,
+        createdAt: new Date(),
+      });
+    }
+
     toast.success(`${p.name} added to cart! 🛒`, {
       position: "top-right",
       autoClose: 2000,
       theme: "colored",
     });
-  };
+  } catch (error) {
+    console.error("Error adding to Firebase:", error);
+    toast.error("Failed to add item to Firebase ❌");
+  }
+};
+
+
+
+
 
   return (
     <>
@@ -504,7 +531,7 @@ function Menus() {
                   <p>{p.description}</p>
                   <p>⭐ {p.rating}</p>
                   <strong>₹ {p.price}</strong>
-                  <div>
+                  <div style={{display:"flex"}}>
                     <Button
                       onClick={() => handleClick(p)}
                       sx={{
@@ -516,6 +543,18 @@ function Menus() {
                       className="order"
                     >
                       Add To Cart
+                    </Button>
+                    <Button
+                      onClick={() => {navigate("/cart"),handleClick(p)}}
+                      sx={{
+                        width: "100%",
+                        textAlign: "center",
+                        color: "#000",
+                        padding: "12px",
+                      }}
+                      className="order"
+                    >
+                      Order Now
                     </Button>
                   </div>
                 </div>

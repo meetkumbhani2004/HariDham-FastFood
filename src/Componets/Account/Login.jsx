@@ -128,7 +128,7 @@ const handleGoogleSuccess = (credentialResponse) => {
           height: "100vh",
           display: "flex",
           alignItems: "center",
-          justifyContent: "center",
+          justifyContent: "left",
         }}
       >
         <div className="login-container">
