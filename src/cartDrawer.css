@@ -1,0 +1,158 @@
+.cart-bg {
+  /* padding: 30px; */
+  max-width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  font-family: sans-serif;
+  background-image: url('./assets//shipinBack.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.cart-bg {
+  background: #f9f9f9;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.cart-page {
+  max-width: 1200px;
+  margin: auto;
+}
+
+.cart-title h1 {
+  font-size: 28px;
+  margin-bottom: 5px;
+}
+
+.cart-title p {
+  color: #777;
+  font-size: 14px;
+}
+
+/* Table Styles */
+.cart-container table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.cart-container th, 
+.cart-container td {
+  padding: 12px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+  font-size: 16px;
+}
+
+.cart-container th {
+  background: #f3f3f3;
+  font-weight: 600;
+}
+
+.product-detail {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: flex-start;
+}
+
+.product-detail img {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+/* Buttons */
+button {
+  padding: 5px 10px;
+  border: none;
+  background: #ddd;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+button:hover {
+  background: #bbb;
+}
+
+.delete-btn {
+  background: #ff4d4d;
+  color: white;
+}
+
+.delete-btn:hover {
+  background: #d63030;
+}
+
+.cart-total {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.cart-total p {
+  font-size: 18px;
+  font-weight: bold;
+  margin-right: auto;
+}
+
+.order {
+  background: #ff9900;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.order:hover {
+  background: #e68900;
+}
+
+.order-cancle {
+  margin-top: 20px;
+  padding: 10px;
+  background: #fff5f5;
+  border: 1px solid #ffcccc;
+  color: #d63030;
+  font-size: 14px;
+}
+
+/* ✅ Responsive but keep table */
+@media (max-width: 768px) {
+  .cart-container {
+    overflow-x: auto; /* Enable scroll instead of breaking layout */
+  }
+
+  .cart-container table {
+    min-width: 700px; /* Prevent table from squishing */
+  }
+
+  .product-detail img {
+    width: 50px;
+    height: 50px;
+  }
+
+  .cart-container th, 
+  .cart-container td {
+    font-size: 14px;
+    padding: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-detail img {
+    width: 40px;
+    height: 40px;
+  }
+  .cart-container th, 
+  .cart-container td {
+    font-size: 12px;
+    padding: 6px;
+  }
+}

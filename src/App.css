@@ -1,0 +1,94 @@
+.hero {
+  .hero {
+  background-size: contain; /* cover se contain me change */
+  background-repeat: no-repeat;
+  background-position: center;
+ 
+}
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  /* height: 100%; */
+  background-image: inherit;
+  background-size: cover;
+  background-position: center;
+  /* filter: blur(6px) brightness(0.6); */
+  z-index: 0;
+}
+
+.main-header {
+  position: relative;
+  z-index: 1;
+}
+
+
+.main-header {
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.08);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  padding: 30px;
+  animation: neonBorder 3s infinite alternate ease-in-out;
+  margin: 10px;
+}
+
+.main-order {
+  background: linear-gradient(45deg, #ff0080, #ff8c00);
+  border: none;
+  padding: 12px 20px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.main-order::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.4), transparent);
+  transform: rotate(25deg);
+  animation: shine 2s infinite;
+  z-index: -1;
+}
+
+.heade-guj {
+  font-size: 1.8rem;
+  position: relative;
+  color: #fff;
+
+}
+
+@keyframes shine {
+  0% { transform: translateX(-100%) rotate(25deg); }
+  100% { transform: translateX(100%) rotate(25deg); }
+}
+
+@keyframes neonBorder {
+  0% {
+    box-shadow: 0 0 5px #ff0080, 0 0 10px #ff0080, 0 0 20px #ff0080;
+  }
+  100% {
+    box-shadow: 0 0 10px #00ffe0, 0 0 20px #00ffe0, 0 0 40px #00ffe0;
+  }
+}
+
+@keyframes glitch {
+  0% { text-shadow: 2px 0 red, -2px 0 cyan; }
+  20% { text-shadow: -2px 0 red, 2px 0 cyan; }
+  40% { text-shadow: 2px 2px red, -2px -2px cyan; }
+  60% { text-shadow: -2px -2px red, 2px 2px cyan; }
+  80% { text-shadow: 2px -2px red, -2px 2px cyan; }
+  100% { text-shadow: -2px 2px red, 2px -2px cyan; }
+}

@@ -1,0 +1,54 @@
+.about-contact {
+  background: #f9f9f9;
+  padding: 40px 20px;
+  border-top: 2px solid #eee;
+  font-family: Arial, sans-serif;
+}
+
+.ac-container {
+  max-width: 1100px;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  justify-content: space-between;
+}
+
+.ac-about, .ac-contact {
+  flex: 1 1 45%;
+  min-width: 280px;
+}
+
+.ac-about h2, .ac-contact h2 {
+  font-size: 22px;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.ac-about p {
+  line-height: 1.6;
+  color: #555;
+}
+
+.ac-contact ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.ac-contact li {
+  margin-bottom: 8px;
+  color: #555;
+  font-size: 15px;
+}
+
+.ac-contact strong {
+  color: #222;
+}
+
+@media (max-width: 768px) {
+  .ac-container {
+    flex-direction: column;
+    text-align: center;
+  }
+}
