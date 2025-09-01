@@ -497,7 +497,37 @@ const handleClick = async (p) => {
   }
 };
 
+// ✅ Order Now function (direct Orders me save karega)
+const handleClick1 = async (p) => {
+  try {
+    const user = auth.currentUser;
+    if (user) {
+      // 🔥 Path: Login/{userId}/Orders (temp - address ke baad shift karenge)
+      const orderRef = collection(db, "Login", user.uid, "Orders");
+      await addDoc(orderRef, {
+        id: p.id,
+        name: p.name,
+        price: p.price,
+        image: p.image,
+        quantity: 1,
+        status: "Pending",
+        createdAt: new Date(),
+      });
 
+      toast.success(`Order placed for ${p.name} ✅`, {
+        position: "top-right",
+        autoClose: 2000,
+        theme: "colored",
+      });
+
+      // cart page pe bhejna
+      navigate("/cart");
+    }
+  } catch (error) {
+    console.error("Error placing order:", error);
+    toast.error("Failed to place order ❌");
+  }
+};
 
 
 

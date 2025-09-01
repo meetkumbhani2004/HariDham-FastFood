@@ -17,53 +17,57 @@ const Login = () => {
   const navigate = useNavigate();
 
   // ----------------- Local Login -----------------
-  const handleLogin = (e) => {
-    e.preventDefault();
+ const handleLogin = (e) => {
+  e.preventDefault();
 
-    const users = JSON.parse(localStorage.getItem("users")) || [];
+  const users = JSON.parse(localStorage.getItem("users")) || [];
 
-    const adminAccount = {
-      id: 999,
-      firstName: "Admin",
-      lastName: "Panel",
-      email: "admin@test.com",
-      password: "1234",
-      role: "admin",
-    };
-
-    let matchedUser = users.find(
-      (user) => user.email === email && user.password === password
-    );
-
-    if (!matchedUser && email === adminAccount.email && password === adminAccount.password) {
-      matchedUser = adminAccount;
-    }
-
-    if (matchedUser) {
-      sessionStorage.setItem("currentUser", JSON.stringify(matchedUser));
-      window.dispatchEvent(new Event("storage"));
-
-      toast.success(`Welcome ${matchedUser.firstName}!`, {
-        position: "top-right",
-        autoClose: 2000,
-        theme: "colored",
-      });
-
-      setTimeout(() => {
-        if (matchedUser.role === "admin") {
-          navigate("/admin");
-        } else {
-          navigate("/");
-        }
-      }, 2000);
-    } else {
-      toast.error("Invalid email or password!", {
-        position: "top-right",
-        autoClose: 2500,
-        theme: "colored",
-      });
-    }
+  const adminAccount = {
+    id: 999,
+    firstName: "Admin",
+    lastName: "Panel",
+    email: "admin@test.com",
+    password: "1234",
+    role: "admin",
   };
+
+  let matchedUser = users.find(
+    (user) => user.email === email && user.password === password
+  );
+
+  // Check admin credentials if no regular user matched
+  if (!matchedUser && email === adminAccount.email && password === adminAccount.password) {
+    matchedUser = adminAccount;
+  }
+
+  if (matchedUser) {
+    sessionStorage.setItem("currentUser", JSON.stringify(matchedUser));
+    window.dispatchEvent(new Event("storage"));
+
+    console.log("Logged in user:", matchedUser.id, matchedUser.email); // ✅
+
+    toast.success(`Welcome ${matchedUser.firstName}!`, {
+      position: "top-right",
+      autoClose: 2000,
+      theme: "colored",
+    });
+
+    setTimeout(() => {
+      if (matchedUser.role === "admin") {
+        navigate("/admin");
+      } else {
+        navigate("/");
+      }
+    }, 2000);
+  } else {
+    toast.error("Invalid email or password!", {
+      position: "top-right",
+      autoClose: 2500,
+      theme: "colored",
+    });
+  }
+};
+
 
   // ----------------- Google Login -----------------
   // ----------------- Google Login -----------------

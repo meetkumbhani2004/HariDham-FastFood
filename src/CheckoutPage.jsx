@@ -3,6 +3,8 @@ import React, { useState, useEffect } from "react";
 import { useCart } from "./CartContext";
 import { useNavigate } from "react-router-dom";
 import "./checkout.css";
+import { db } from "./firebase";
+import { doc, getDoc } from "firebase/firestore";
 
 const CheckoutPage = () => {
   const { cartItems, clearCart } = useCart();
@@ -40,6 +42,21 @@ const CheckoutPage = () => {
   // Order State
   const [isProcessing, setIsProcessing] = useState(false);
 
+
+useEffect(() => {
+  const user = JSON.parse(sessionStorage.getItem("currentUser"));
+  if (user) {
+    const fetchCart = async () => {
+      const cartRef = doc(db, "carts", user.id);
+      const cartSnap = await getDoc(cartRef);
+      if (cartSnap.exists()) {
+        setCart(cartSnap.data());
+      }
+    };
+    fetchCart();
+  }
+}, []);
+
   useEffect(() => {
     const user = JSON.parse(sessionStorage.getItem("currentUser"));
     if (!user) {
@@ -59,7 +76,7 @@ const CheckoutPage = () => {
   }, [navigate]);
 
   const total = cartItems.reduce((sum, item) => sum + item.price * (item.quantity || 1), 0);
-  const deliveryFee = total > 500 ? 0 : 40;
+  const deliveryFee = total > 500 ? 0 : 30;
   const tax = total * 0.05; // 5% tax
   const finalTotal = total + deliveryFee + tax;
 

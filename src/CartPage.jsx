@@ -3,6 +3,8 @@ import React from "react";
 import { useCart } from "./CartContext";
 import "./cartDrawer.css";
 import { useNavigate } from "react-router-dom";
+import { db } from "./firebase"; 
+import { doc, setDoc } from "firebase/firestore";
 
 const CartPage = () => {
   const { cartItems, increaseQuantity, decreaseQuantity, removeItem, clearCart } = useCart();
@@ -19,7 +21,6 @@ const CartPage = () => {
     }
     navigate("/checkout"); 
   };
-
   return (
     <div className="cart-bg">
       <div className="cart-page">
